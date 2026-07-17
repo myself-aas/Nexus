@@ -8,6 +8,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
+@Deprecated(
+    message = "Legacy repository stack. Prefer ConversationRepository and data/local-backed repositories.",
+    replaceWith = ReplaceWith("ConversationRepository")
+)
 class ChatRepository(context: Context) {
     private val db = AppDatabase.getDatabase(context)
     private val chatDao = db.chatDao()

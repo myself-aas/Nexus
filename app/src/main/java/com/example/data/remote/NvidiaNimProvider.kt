@@ -8,6 +8,7 @@ import com.example.domain.model.ChatStreamChunk
 import com.example.domain.model.ModelInfo
 import com.example.domain.model.ModelProvider
 import com.example.domain.model.ApiError
+import com.example.util.bearerAuthorizationValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -52,7 +53,7 @@ class NvidiaNimProvider @Inject constructor() : ModelProvider {
         try {
             val request = Request.Builder()
                 .url("$baseUrl/models")
-                .header("Authorization", "Bearer $apiKey")
+                .header("Authorization", bearerAuthorizationValue(apiKey))
                 .get()
                 .build()
 
@@ -204,7 +205,7 @@ class NvidiaNimProvider @Inject constructor() : ModelProvider {
 
         val httpRequest = Request.Builder()
             .url("$baseUrl/chat/completions")
-            .header("Authorization", "Bearer $apiKey")
+            .header("Authorization", bearerAuthorizationValue(apiKey))
             .header("Content-Type", "application/json")
             .post(requestBodyJson)
             .build()
