@@ -117,34 +117,15 @@ class ChatViewModel @Inject constructor(
 
     // Active Conversation Message List
     @OptIn(ExperimentalCoroutinesApi::class)
-    val pagingData: StateFlow<PagingData<Message>> = _selectedConversationId
+    val currentMessages: StateFlow<List<Message>> = _selectedConversationId
         .flatMapLatest { conversationId ->
             if (conversationId != null) {
-                conversationRepository.getMessagesForConversationPaging(conversationId)
-                    .cachedIn(viewModelScope)
+                conversationRepository.getMessagesForConversation(conversationId)
             } else {
-                // Return a flow that emits an empty PagingData when no conversation is selected
-                flow {
-                    emit(Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
-                        object : PagingSource<Int, Message>() {
-                            override fun load(params: LoadParams<Int>): LoadResult<Int, Message> {
-                                return LoadResult.Page(emptyList(), null, null)
-                            }
-                            override fun getRefreshKey(state: PagingState<Int, Message>): Int? = null
-                        }
-                    }.first())
-                }
+                flowOf(emptyList())
             }
         }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 
-                 Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
-                     object : PagingSource<Int, Message>() {
-                         override fun load(params: LoadParams<Int>): LoadResult<Int, Message> {
-                             return LoadResult.Page(emptyList(), null, null)
-                         }
-                         override fun getRefreshKey(state: PagingState<Int, Message>): Int? = null
-                     }
-                 }.first())
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     // Active Conversation details
     val activeConversation: StateFlow<Conversation?> = combine(
