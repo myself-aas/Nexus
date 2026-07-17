@@ -19,8 +19,8 @@ import androidx.room.TypeConverters
         CustomModeEntity::class,
         RecentExportEntity::class
     ],
-    version = 8,
-    exportSchema = false
+    version = 9,
+    exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class NexusDatabase : RoomDatabase() {

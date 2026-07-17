@@ -23,7 +23,7 @@ object AppModule {
             NexusDatabase::class.java,
             "nexus_ai_db"
         )
-        .fallbackToDestructiveMigration()
+        .addMigrations(*NexusMigrations.ALL)
         .build()
     }
 

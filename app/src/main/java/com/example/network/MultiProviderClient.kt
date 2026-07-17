@@ -5,6 +5,7 @@ import android.util.Base64
 import com.example.BuildConfig
 import com.example.data.database.DocumentEntity
 import com.example.data.database.MessageEntity
+import com.example.util.bearerAuthorizationValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -138,7 +139,7 @@ object MultiProviderClient {
 
                     val request = Request.Builder()
                         .url(url)
-                        .header("Authorization", "Bearer $actualKey")
+                        .header("Authorization", bearerAuthorizationValue(actualKey))
                         .post(requestBody)
                         .build()
 
@@ -241,7 +242,7 @@ object MultiProviderClient {
 
                     val request = Request.Builder()
                         .url(url)
-                        .header("Authorization", "Bearer $actualKey")
+                        .header("Authorization", bearerAuthorizationValue(actualKey))
                         .post(requestBody)
                         .build()
 

@@ -18,6 +18,9 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.UUID
 
+@Deprecated(
+    message = "Legacy ViewModel stack. Prefer presentation/* ViewModels backed by data/local repositories."
+)
 class PortalViewModel(application: Application) : AndroidViewModel(application) {
     
     private val repository = ChatRepository(application)

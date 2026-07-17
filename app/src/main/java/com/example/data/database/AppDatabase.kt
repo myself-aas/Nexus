@@ -13,8 +13,8 @@ import androidx.room.RoomDatabase
         CredentialEntity::class,
         UserEntity::class
     ],
-    version = 1,
-    exportSchema = false
+    version = 2,
+    exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun chatDao(): ChatDao
@@ -34,7 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "claude_portal_db"
                 )
-                .fallbackToDestructiveMigration()
+                .addMigrations(*AppDatabaseMigrations.ALL)
                 .build()
                 INSTANCE = instance
                 instance
