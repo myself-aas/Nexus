@@ -601,7 +601,7 @@ fun parseMarkdown(content: String, isDarkTheme: Boolean = false): List<MarkdownP
         // 2. BlockQuote
         if (trimmedLine.startsWith(">")) {
             val quoteContent = trimmedLine.removePrefix(">").trim()
-            parts.add(MarkdownPart.BlockQuote(parseInlineFormatting(quoteContent, isDarkTheme)))
+            parts.add(MarkdownPart.BlockQuote(parseInlineFormatting(quoteContent)))
             index++
             continue
         }
@@ -620,7 +620,7 @@ fun parseMarkdown(content: String, isDarkTheme: Boolean = false): List<MarkdownP
         // 4. Unordered List
         if (trimmedLine.startsWith("* ") || trimmedLine.startsWith("- ")) {
             val listText = trimmedLine.substring(2).trim()
-            parts.add(MarkdownPart.ListElement(isOrdered = false, index = null, annotatedText = parseInlineFormatting(listText, isDarkTheme)))
+            parts.add(MarkdownPart.ListElement(isOrdered = false, index = null, annotatedText = parseInlineFormatting(listText)))
             index++
             continue
         }
@@ -630,7 +630,7 @@ fun parseMarkdown(content: String, isDarkTheme: Boolean = false): List<MarkdownP
         if (orderedMatch != null) {
             val num = orderedMatch.groupValues[1].toInt()
             val listText = orderedMatch.groupValues[2].trim()
-            parts.add(MarkdownPart.ListElement(isOrdered = true, index = num, annotatedText = parseInlineFormatting(listText, isDarkTheme)))
+            parts.add(MarkdownPart.ListElement(isOrdered = true, index = num, annotatedText = parseInlineFormatting(listText)))
             index++
             continue
         }

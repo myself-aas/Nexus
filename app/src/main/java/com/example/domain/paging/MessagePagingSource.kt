@@ -3,6 +3,7 @@ package com.example.domain.paging
 import androidx.paging.LoadParams
 import androidx.paging.LoadResult
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.example.data.local.MessageDao
 import com.example.domain.model.Message
 import kotlinx.coroutines.Dispatchers

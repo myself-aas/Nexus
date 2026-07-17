@@ -1,5 +1,6 @@
 package com.example.presentation.ui.components
-
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.ui.theme.GlassBottomSheet
 
@@ -18,6 +20,10 @@ import com.example.ui.theme.GlassBottomSheet
  * Generic reusable bottom sheet for selection dialogs.
  * Supports search, categorization, and loading states.
  */
+@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> SelectionBottomSheet(
     items: List<T>,
@@ -45,8 +51,7 @@ fun <T> SelectionBottomSheet(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp),
-            testTag = "selection_bottom_sheet"
+                .testTag("selection_bottom_sheet")
         ) {
             // Header
             if (title != null) {
