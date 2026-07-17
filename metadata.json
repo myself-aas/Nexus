@@ -1,0 +1,8 @@
+{
+  "name": "Nexus",
+  "description": "Encrypted AI workspace featuring multi-provider model integration, document analysis, offline local indexing, and secure multimodal content generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
